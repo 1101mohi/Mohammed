@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>(Type a title for your page here)</title>
+<script type="text/javascript">
+//var x = new Date('<?php print date("F d, Y H:i:s", time())?>')
+var x = new Date()//client
+function display_c(){
+x.setSeconds(x.getSeconds() + 1);
+var refresh=1000; // Refresh rate in milli seconds
+mytime=setTimeout('display_ct()',refresh)
+}
+
+function padzero(num,count) {
+var num = num + '';
+while(num.length < count) {
+num = "0" + num;
+}
+return num;
+}
+
+function display_ct() {
+var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+var monthname=new Array("Jan","Feb","March","April","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+
+var y;
+
+y = monthname[x.getMonth()] + " "
+y = y + padzero(x.getDate(), 2)
+y = y + ", "
+y = y + x.getFullYear()
+y = y + " "
+y = y + padzero(x.getHours(), 2)
+y = y + ":"
+y = y + padzero(x.getMinutes(), 2)
+y = y + ":"
+y = y + padzero(x.getSeconds(), 2)
+
+
+document.getElementById('ct').innerHTML = y
+tt=display_c();
+}
+</script>
+</head>
+
+<body onload=display_ct();>
+<span id='ct' ></span>
+<br/><br/><br/>
+<?php  date_default_timezone_set('EUROPE/Stockholm');print date("F d, Y H:i:s");?>
+</body>
+
+</html>
